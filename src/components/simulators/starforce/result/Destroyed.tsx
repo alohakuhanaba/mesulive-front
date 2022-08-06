@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useStarforce } from "lib/hooks/redux/starforce";
 // import {mean} from "mathjs";
-import { putUnit, sliceString } from "lib/utils";
 import classNames from "classnames/bind";
-import Input from "components/module/Input";
 import { CompareArrowsRounded } from "@mui/icons-material";
+import Input from "~/components/module/Input";
+import { putUnit, sliceString } from "~/lib/utils";
+import { useStarforce } from "~/lib/hooks/redux/starforce";
 import DestroyedChart from "./DestroyedChart";
 import styles from "./Destroyed.module.scss";
 

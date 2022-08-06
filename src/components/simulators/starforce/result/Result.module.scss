@@ -1,4 +1,4 @@
-@import "lib/styles/utils.module";
+@import "src/lib/styles/utils.module";
 
 .box {
   @include laptopOrWider() {

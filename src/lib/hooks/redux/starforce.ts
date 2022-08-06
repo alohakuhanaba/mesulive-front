@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "store/redux";
 import { useCallback } from "react";
-import { actions, StarforceState } from "store/redux/starforce";
-import { StarforceEvent } from "lib/starforce";
+import { RootState } from "~/store/redux";
+import { actions, StarforceState } from "~/store/redux/starforce";
+import { StarforceEvent } from "~/lib/starforce";
 
 export function useStarforce<Selected = unknown>(
   selector: (s: StarforceState) => Selected,

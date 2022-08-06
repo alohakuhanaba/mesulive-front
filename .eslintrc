@@ -6,7 +6,8 @@
     "@typescript-eslint",
     "prettier",
     "react-hooks",
-    "only-warn"
+    "only-warn",
+    "eslint-plugin-absolute-imports"
   ],
   "extends": [
     "airbnb",
@@ -43,9 +44,15 @@
       "error",
       "only-multiline"
     ],
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "absolute-imports/only-absolute-imports": "warn",
+    "import/extensions": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"
-  }
+  },
+  "ignorePatterns": [
+    "craco.config.js",
+    ".eslintrc"
+  ]
 }

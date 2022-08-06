@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "lib/styles/utils.module";
+@import "src/lib/styles/utils.module";
 
 .container {
   :global .highcharts-axis {
@@ -16,6 +16,6 @@
 }
 
 .skeleton {
-  background-color: color.adjust($color_secondary, $alpha:-0.7);
+  background-color: color.adjust($color_secondary, $alpha: -0.7);
   border-radius: 20px;
 }

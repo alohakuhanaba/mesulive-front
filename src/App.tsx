@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Header from "components/common/Header";
-import Navigation from "components/common/Navigation";
 import classNames from "classnames/bind";
-import variables from "lib/styles/utils.module.scss";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "pages/MainPage";
-import Starforce from "pages/simulators/Starforce";
-import NotFoundPage from "pages/NotFoundPage";
-import useWindowDimensions from "lib/hooks/useWindowDimensions";
 import { Button, Drawer, NoSsr, Stack } from "@mui/material";
 import * as Highcharts from "highcharts";
 import { createBrowserHistory } from "history";
-import { GA } from "lib/ga";
+import MainPage from './pages/MainPage';
+import Starforce from './pages/simulators/Starforce';
+import NotFoundPage from './pages/NotFoundPage';
+import Navigation from "./components/common/Navigation";
+import Header from "./components/common/Header";
+import useWindowDimensions from "./lib/hooks/useWindowDimensions";
+import variables from "./lib/styles/utils.module.scss";
+import { GA } from "./lib/ga";
 import styles from "./App.module.scss";
 
 const cx = classNames.bind(styles);

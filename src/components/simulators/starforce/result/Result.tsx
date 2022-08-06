@@ -1,13 +1,13 @@
 import React from "react";
-import Box from "components/module/Box";
-import styles from "./Result.module.scss";
 import classNames from "classnames/bind";
 import factory from "highcharts/modules/histogram-bellcurve";
 import * as Highcharts from "highcharts";
+import Boost from "highcharts/modules/boost";
+import Box from "~/components/module/Box";
+import styles from "./Result.module.scss";
 import Cost from "./Cost";
 import Destroyed from "./Destroyed";
-import { useStarforce } from "lib/hooks/redux/starforce";
-import Boost from "highcharts/modules/boost";
+import { useStarforce } from "~/lib/hooks/redux/starforce";
 
 factory(Highcharts);
 Boost(Highcharts);

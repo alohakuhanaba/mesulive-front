@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import MuiButton from "lib/theme/button";
+import MuiButton from './button';
 import palette from "./palette";
 
 const theme = createTheme({

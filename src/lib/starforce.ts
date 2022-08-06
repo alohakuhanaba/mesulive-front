@@ -1,5 +1,5 @@
-import {randomPick} from "lib/utils";
 import cloneDeep from "lodash/cloneDeep";
+import { randomPick } from './utils';
 
 export type StarforceEvent = "none" | "1516" | "1+1" | "30%" | "shining";
 
@@ -22,12 +22,15 @@ export type Option = {
       PC_room: boolean;
     };
   };
-}
+};
 
 export class StarforceSimState {
   star: number;
+
   cost: number;
+
   destroyed: number;
+
   stack: 0 | 1 | 2;
 
   constructor(star: number) {
@@ -38,22 +41,27 @@ export class StarforceSimState {
   }
 }
 
-export const starforceDiscount: { [key: string]: { label: string, rate: number } } = {
-  MVP_silver: {label: "MVP 실버", rate: 0.03},
-  MVP_gold: {label: "MVP 골드", rate: 0.05},
-  MVP_diamond: {label: "MVP 다이아", rate: 0.1},
-  PC_room: {label: "PC방", rate: 0.05}
-}
+export const starforceDiscount: {
+  [key: string]: { label: string; rate: number };
+} = {
+  MVP_silver: { label: "MVP 실버", rate: 0.03 },
+  MVP_gold: { label: "MVP 골드", rate: 0.05 },
+  MVP_diamond: { label: "MVP 다이아", rate: 0.1 },
+  PC_room: { label: "PC방", rate: 0.05 },
+};
 
 export const getReachableStar = (level: number) => {
   if (level < 95) return 5;
   if (level <= 107) return 10;
   if (level <= 127) return 15;
   if (level <= 137) return 20;
-  else return 25;
-}
+  return 25;
+};
 
-const getPropTable = (targetStar: number, starcatchArr: boolean[]): number[][] => {
+const getPropTable = (
+  targetStar: number,
+  starcatchArr: boolean[]
+): number[][] => {
   const defaultTable = [
     [0.95, 0.05, 0, 0],
     [0.9, 0.1, 0, 0],
@@ -79,7 +87,7 @@ const getPropTable = (targetStar: number, starcatchArr: boolean[]): number[][] =
     [0.3, 0, 0.63, 0.07],
     [0.03, 0, 0.776, 0.194],
     [0.02, 0, 0.686, 0.294],
-    [0.01, 0, 0.594, 0.396]
+    [0.01, 0, 0.594, 0.396],
   ];
   const starcatchTable = [
     [0.9975, 0.0025, 0, 0],
@@ -106,7 +114,7 @@ const getPropTable = (targetStar: number, starcatchArr: boolean[]): number[][] =
     [0.315, 0, 0.6165, 0.0685],
     [0.0315, 0, 0.7748, 0.1937],
     [0.021, 0, 0.6853, 0.2937],
-    [0.0105, 0, 0.5937, 0.3958]
+    [0.0105, 0, 0.5937, 0.3958],
   ];
   const result = defaultTable;
 
@@ -114,24 +122,29 @@ const getPropTable = (targetStar: number, starcatchArr: boolean[]): number[][] =
     if (v) {
       result[i] = starcatchTable[i];
     }
-  })
+  });
 
   return result.slice(0, targetStar);
-}
+};
 
 const getCostArr = (equipLevel: number, targetStar: number): number[] => {
   const result = [];
   for (let i = 0; i < targetStar; i++) {
-    if (i <= 9)
-      result.push(1000 + Math.pow(equipLevel, 3) * (i + 1) / 25);
+    if (i <= 9) result.push(1000 + (equipLevel ** 3 * (i + 1)) / 25);
     else if (i <= 14)
-      result.push(Math.round((1000 + Math.pow(equipLevel, 3) * Math.pow(i + 1, 2.7) / 400) / 100) * 100);
+      result.push(
+        Math.round((1000 + (equipLevel ** 3 * (i + 1) ** 2.7) / 400) / 100) *
+          100
+      );
     else
-      result.push(Math.round((1000 + Math.pow(equipLevel, 3) * Math.pow(i + 1, 2.7) / 200) / 100) * 100);
+      result.push(
+        Math.round((1000 + (equipLevel ** 3 * (i + 1) ** 2.7) / 200) / 100) *
+          100
+      );
   }
 
   return result;
-}
+};
 
 /*
  * INPUT
@@ -155,22 +168,24 @@ export const starforceSim = (
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
-        const {equipLevel, currentStar, targetStar, spareCost} = opt.equipInfo;
-        const {simNum, safeguardArr, starcatchArr, event, discount} = opt.detail;
+        const { equipLevel, currentStar, targetStar, spareCost } =
+          opt.equipInfo;
+        const { simNum, safeguardArr, starcatchArr, event, discount } =
+          opt.detail;
 
         // probTable 계산
         const probTable = getPropTable(targetStar, starcatchArr);
 
         // probTable에 safeguardArr 반영
-        if (12 < targetStar) {
+        if (targetStar > 12) {
           safeguardArr.forEach((v, i) => {
             if (v && i + 12 < targetStar) {
               const star = i + 12;
               probTable[star][3] = 0; // 파괴 확률을 0으로 설정
               // 유지 or 하락 확률을 (1 - 성공확률)로 설정
-              probTable[star][1] !== 0 ?
-                probTable[star][1] = 1 - probTable[star][0] :
-                probTable[star][2] = 1 - probTable[star][0];
+              probTable[star][1] !== 0
+                ? (probTable[star][1] = 1 - probTable[star][0])
+                : (probTable[star][2] = 1 - probTable[star][0]);
             }
           });
         }
@@ -182,11 +197,14 @@ export const starforceSim = (
         // costArr에 discount 반영
         let discountRate = 0;
         if (discount.PC_room) discountRate += starforceDiscount.PC_room.rate;
-        if (discount.MVP_diamond) discountRate += starforceDiscount.MVP_diamond.rate;
-        else if (discount.MVP_gold) discountRate += starforceDiscount.MVP_gold.rate;
-        else if (discount.MVP_silver) discountRate += starforceDiscount.MVP_silver.rate;
+        if (discount.MVP_diamond)
+          discountRate += starforceDiscount.MVP_diamond.rate;
+        else if (discount.MVP_gold)
+          discountRate += starforceDiscount.MVP_gold.rate;
+        else if (discount.MVP_silver)
+          discountRate += starforceDiscount.MVP_silver.rate;
         for (let i = 0; i < 17; i++) {
-          costArr[i] *= (1 - discountRate);
+          costArr[i] *= 1 - discountRate;
         }
 
         // costArr에 event 반영 & costArr가 정수임을 보장
@@ -208,20 +226,26 @@ export const starforceSim = (
         // console.log(costArr_test);
 
         let unitCnt = 0;
-        const resultArr: { cost: number, destroyed: number }[] = [];
+        const resultArr: { cost: number; destroyed: number }[] = [];
 
         while (unitCnt < simUnit) {
           unitCnt++;
           const curStar = curState.star;
           const curStack = curState.stack;
-          const safeguard = (12 <= curStar && curStar < 17) && safeguardArr[curStar - 12];
+          const safeguard =
+            curStar >= 12 && curStar < 17 && safeguardArr[curStar - 12];
 
           // cost 계산
           let cost = costArr[curStar];
           if (curStack !== 2 && safeguard) {
-            if (!(
-              (event === "1516" || event === "shining") && 0 < curStar && curStar < 16 && curStar % 5 === 0
-            )) {
+            if (
+              !(
+                (event === "1516" || event === "shining") &&
+                curStar > 0 &&
+                curStar < 16 &&
+                curStar % 5 === 0
+              )
+            ) {
               cost += defaultCostArr[curStar];
             }
           }
@@ -234,7 +258,7 @@ export const starforceSim = (
           if (curStack === 2) {
             shouldPick = false;
           } else if (event === "1516" || event === "shining") {
-            if (0 < curStar && curStar < 16 && curStar % 5 === 0) {
+            if (curStar > 0 && curStar < 16 && curStar % 5 === 0) {
               shouldPick = false;
             }
           }
@@ -275,7 +299,10 @@ export const starforceSim = (
 
           // 완료(목표 달성) 여부
           if (curState.star === targetStar) {
-            resultArr.push({cost: curState.cost, destroyed: curState.destroyed});
+            resultArr.push({
+              cost: curState.cost,
+              destroyed: curState.destroyed,
+            });
             simCnt++;
 
             // 계산이 완전히 끝났다면 curSimCnt === simNum - 1
@@ -284,7 +311,7 @@ export const starforceSim = (
           }
         }
 
-        const result = {resultArr, curState, simCnt};
+        const result = { resultArr, curState, simCnt };
         resolve(result);
       } catch (e) {
         console.log(e);
@@ -292,4 +319,4 @@ export const starforceSim = (
       }
     }, 0);
   });
-}
+};

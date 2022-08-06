@@ -1,5 +1,5 @@
 @use "sass:color";
-@import "lib/styles/utils.module";
+@import "src/lib/styles/utils.module";
 
 .wrapper {
   @include laptopOrWider() {

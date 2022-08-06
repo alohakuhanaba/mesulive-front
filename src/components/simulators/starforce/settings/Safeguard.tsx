@@ -1,10 +1,10 @@
 import React from "react";
-import { useStarforce, useStarforceAction } from "lib/hooks/redux/starforce";
 import { shallowEqual } from "react-redux";
 import classNames from "classnames/bind";
-import ToggleButton from "components/module/ToggleButton";
-import { getReachableStar } from "lib/starforce";
 import { Button, Stack } from "@mui/material";
+import ToggleButton from "~/components/module/ToggleButton";
+import { getReachableStar } from "~/lib/starforce";
+import { useStarforce, useStarforceAction } from "~/lib/hooks/redux/starforce";
 import styles from "./Safeguard.module.scss";
 
 const cx = classNames.bind(styles);

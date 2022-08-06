@@ -1,8 +1,8 @@
-import {combineReducers} from "redux";
-import starforce from "store/redux/starforce";
+import { combineReducers } from "redux";
+import starforce from './starforce';
 
 const rootReducer = combineReducers({
-  starforce
+  starforce,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

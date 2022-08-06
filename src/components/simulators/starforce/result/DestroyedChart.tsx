@@ -1,11 +1,11 @@
 import React from "react";
-import { useStarforce } from "lib/hooks/redux/starforce";
 import * as Highcharts from "highcharts";
-import { putUnit } from "lib/utils";
-import variable from "lib/styles/utils.module.scss";
 import HighchartsReact from "highcharts-react-official";
 import classNames from "classnames/bind";
 import { Skeleton } from "@mui/material";
+import variable from "~/lib/styles/utils.module.scss";
+import { putUnit } from "~/lib/utils";
+import { useStarforce } from "~/lib/hooks/redux/starforce";
 import styles from "./DestroyedChart.module.scss";
 
 const cx = classNames.bind(styles);

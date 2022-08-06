@@ -1,4 +1,4 @@
-import { ThemeComponents } from "lib/types";
+import { ThemeComponents } from "~/lib/types";
 
 const MuiButton: ThemeComponents["MuiButton"] = {
   styleOverrides: {

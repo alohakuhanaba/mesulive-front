@@ -1,16 +1,16 @@
 import React from "react";
-import { hydrateRoot, createRoot } from "react-dom/client";
-import "index.scss";
-import { ThemeProvider, StyledEngineProvider } from "@mui/material";
-import theme from "lib/theme/muiTheme";
+import { createRoot } from "react-dom/client";
+import "./index.scss";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
-import rootReducer from "store/redux";
 import { composeWithDevToolsDevelopmentOnly } from "@redux-devtools/extension";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "store/saga";
 import ReactGA from "react-ga4";
+import rootSaga from "./store/saga";
+import rootReducer from "./store/redux";
+import theme from "./lib/theme/muiTheme";
 import App from "./App";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -37,15 +37,18 @@ const app = (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <StyledEngineProvider injectFirst>
-          <App />
+          <App/>
         </StyledEngineProvider>
       </ThemeProvider>
     </BrowserRouter>
   </Provider>
 );
 const root = createRoot(rootContainer!);
-if (rootContainer && rootContainer.hasChildNodes()) {
-  hydrateRoot(rootContainer, app);
-} else {
-  root.render(app);
-}
+root.render(app);
+
+// Pre-rendering
+// if (rootContainer && rootContainer.hasChildNodes()) {
+//   hydrateRoot(rootContainer, app);
+// } else {
+//   root.render(app);
+// }

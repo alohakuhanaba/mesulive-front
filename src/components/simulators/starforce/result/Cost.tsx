@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useStarforce } from "lib/hooks/redux/starforce";
 import classNames from "classnames/bind";
-import { putUnit, sliceString } from "lib/utils";
-import Input from "components/module/Input";
 import { CompareArrowsRounded } from "@mui/icons-material";
+import Input from "~/components/module/Input";
+import { putUnit, sliceString } from "~/lib/utils";
+import { useStarforce } from "~/lib/hooks/redux/starforce";
 import styles from "./Cost.module.scss";
 // import {mean} from "mathjs";
 import CostChart from "./CostChart";

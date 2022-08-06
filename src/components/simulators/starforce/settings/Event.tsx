@@ -1,7 +1,7 @@
 import React from "react";
-import { useStarforce, useStarforceAction } from "lib/hooks/redux/starforce";
 import classNames from "classnames/bind";
-import RadioGroup from "components/module/RadioGroup";
+import RadioGroup from "~/components/module/RadioGroup";
+import { useStarforce, useStarforceAction } from "~/lib/hooks/redux/starforce";
 import styles from "./Event.module.scss";
 
 const cx = classNames.bind(styles);

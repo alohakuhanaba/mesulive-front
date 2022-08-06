@@ -1,9 +1,6 @@
-import {all, fork} from "redux-saga/effects";
-import {starforceSaga} from "store/saga/starforce";
+import { all, fork } from "redux-saga/effects";
+import { starforceSaga } from './starforce';
 
 export default function* rootSaga() {
-  yield all([
-      fork(starforceSaga),
-    ]
-  )
+  yield all([fork(starforceSaga)]);
 }

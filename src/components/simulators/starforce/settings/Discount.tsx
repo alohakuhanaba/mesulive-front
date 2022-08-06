@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./Discount.module.scss";
 import classNames from "classnames/bind";
-import { starforceDiscount } from "lib/starforce";
-import CheckBox from "components/module/CheckBox";
-import { useStarforce, useStarforceAction } from "lib/hooks/redux/starforce";
+import CheckBox from "~/components/module/CheckBox";
+import styles from "./Discount.module.scss";
+import { starforceDiscount } from "~/lib/starforce";
+import { useStarforce, useStarforceAction } from "~/lib/hooks/redux/starforce";
 
 const cx = classNames.bind(styles);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "components/module/Box";
+import Box from "~/components/module/Box";
 import SimNum from "./SimNum";
 import Safeguard from "./Safeguard";
 import Starcatch from "./Starcatch";

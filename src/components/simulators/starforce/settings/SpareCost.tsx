@@ -1,7 +1,7 @@
 import React from "react";
-import { useStarforce, useStarforceAction } from "lib/hooks/redux/starforce";
-import { filterValue, putUnit, sliceString } from "lib/utils";
-import Input from "components/module/Input";
+import Input from "~/components/module/Input";
+import { useStarforce, useStarforceAction } from "~/lib/hooks/redux/starforce";
+import { filterValue, putUnit, sliceString } from "~/lib/utils";
 
 const SpareCost = () => {
   const spareCost = useStarforce((s) => s.equipInfo.spareCost);

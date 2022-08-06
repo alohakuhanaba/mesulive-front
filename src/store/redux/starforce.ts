@@ -1,6 +1,6 @@
 import { ActionType, createAction, createReducer } from "typesafe-actions";
 import produce from "immer";
-import { StarforceEvent } from "lib/starforce";
+import { StarforceEvent } from "~/lib/starforce";
 
 // Action constants
 export const SET_EQUIP_LEVEL = "sim/starforce/SET_EQUIP_LEVEL";

@@ -1,0 +1,67 @@
+diff --git a/index.js b/index.js
+index 9a2008666051bb43d23c7ac44cfa6c422e5ca2a4..ea4b41ce4659b63fe2136aba3c60086081d73173 100644
+--- a/index.js
++++ b/index.js
+@@ -14,6 +14,25 @@ function has(map, path) {
+   return true;
+ }
+ 
++const separator = path.sep;
++const withoutDot = s => s !== '.'
++const withoutEmpty = s => s.length > 0
++const computeLevel = (acc, s) => s === '..' ? acc - 1 : acc + 1
++
++const pathDepth = (_path) => {
++  if (_path === '') return 0
++  return path.normalize(_path)
++    .split(separator)
++    .filter(withoutDot)
++    .filter(withoutEmpty)
++    .reduce(computeLevel, 0)
++};
++
++const inSameDirectory = (relativePath) => {
++  if (relativePath.startsWith("..")) return false;
++  return true;
++}
++
+ function findDirWithFile(filename) {
+   let dir = path.resolve(filename);
+ 
+@@ -62,13 +81,32 @@ module.exports.rules = {
+       return {
+         ImportDeclaration(node) {
+           const source = node.source.value;
+-          if (source.startsWith(".")) {
++          if (source.startsWith("..") | source.startsWith("src") | source.startsWith("~")) {
+             const filename = context.getFilename();
+ 
+-            const absolutePath = path.normalize(
+-              path.join(path.dirname(filename), source)
++            const filePath = path.relative(baseUrl, filename);
++
++            const absolutePath = source.startsWith("..") ?
++              path.relative(baseUrl, path.normalize(path.join(path.dirname(filename), source))) :
++              source.replace(/^~\//g, 'src/');
++
++            const relativePath = path.normalize(
++              path.relative(path.dirname(filePath), path.dirname(absolutePath))
+             );
+-            const expectedPath = path.relative(baseUrl, absolutePath);
++
++            let expectedPath = absolutePath;
++
++            if (inSameDirectory(relativePath)) {
++              expectedPath = relativePath + '/' + path.basename(expectedPath);
++              if (pathDepth(relativePath) > 0) {
++                expectedPath = './' + expectedPath
++              }
++            }
++
++            expectedPath = expectedPath.replace(/\\/g, '/');
++
++            // Hard Cording
++            expectedPath = expectedPath.replace(/^src\//g, '~/');
+ 
+             if (source !== expectedPath) {
+               context.report({
