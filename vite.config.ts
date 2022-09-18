@@ -19,6 +19,7 @@ export default defineConfig(({mode}) => {
   );
 
   return {
+    base: './',
     plugins: [viteReact(), envCompatible({prefix: "REACT_APP_"})],
     build: {
       outDir: "build",
