@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import factory from "highcharts/modules/histogram-bellcurve";
-import * as Highcharts from "highcharts";
+import Highcharts from "highcharts";
 import Boost from "highcharts/modules/boost";
 import Box from "~/components/module/Box";
 import styles from "./Result.module.scss";
@@ -9,14 +9,14 @@ import Cost from "./Cost";
 import Destroyed from "./Destroyed";
 import { useStarforce } from "~/lib/hooks/redux/starforce";
 
-factory(Highcharts);
-Boost(Highcharts);
-
 const cx = classNames.bind(styles);
 
 type ResultProps = {
   className?: string;
 };
+
+factory(Highcharts);
+Boost(Highcharts);
 
 const Result = ({ className }: ResultProps) => {
   const simNum = useStarforce((s) => s.result.simNum);

@@ -6,9 +6,12 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "types": [
+      "vite/client"
+    ],
+    "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -27,6 +30,7 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "vite.config.ts"
   ]
 }

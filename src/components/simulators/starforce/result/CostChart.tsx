@@ -1,5 +1,5 @@
 import React from "react";
-import * as Highcharts from "highcharts";
+import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import classNames from "classnames/bind";
 import { Skeleton } from "@mui/material";

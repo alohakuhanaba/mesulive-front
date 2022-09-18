@@ -2,17 +2,17 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import classNames from "classnames/bind";
 import { Route, Routes } from "react-router-dom";
 import { Button, Drawer, NoSsr, Stack } from "@mui/material";
-import * as Highcharts from "highcharts";
+import { charts } from "highcharts";
 import { createBrowserHistory } from "history";
-import MainPage from './pages/MainPage';
-import Starforce from './pages/simulators/Starforce';
-import NotFoundPage from './pages/NotFoundPage';
+import MainPage from "./pages/MainPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import Navigation from "./components/common/Navigation";
 import Header from "./components/common/Header";
 import useWindowDimensions from "./lib/hooks/useWindowDimensions";
 import variables from "./lib/styles/utils.module.scss";
 import { GA } from "./lib/ga";
 import styles from "./App.module.scss";
+import Starforce from "./pages/simulators/Starforce";
 
 const cx = classNames.bind(styles);
 
@@ -38,10 +38,8 @@ const App = () => {
 
   const toggleNavi = useCallback(() => {
     setNaviActive(!naviActive); // 비동기임에 주의
-    for (let i = 0; i < Highcharts.charts.length; i++) {
-      if (Highcharts.charts[i] !== undefined) {
-        setTimeout(() => Highcharts.charts[i]?.reflow(), 300);
-      }
+    for (let i = 0; i < charts.length; i++) {
+      setTimeout(() => charts[i]?.reflow(), 300);
     }
   }, [naviActive]);
 

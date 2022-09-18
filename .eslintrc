@@ -48,8 +48,18 @@
     "absolute-imports/only-absolute-imports": "warn",
     "import/extensions": "off"
   },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ]
+    }
+  ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": [
+      "./tsconfig.json"
+    ]
   },
   "ignorePatterns": [
     "craco.config.js",

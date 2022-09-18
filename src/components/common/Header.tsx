@@ -17,11 +17,7 @@ const Header = ({ toggleNavi }: HeaderProps) => {
         <MenuRoundedIcon className={cx("menu-icon")} />
       </Button>
       <a href="/">
-        <img
-          className={cx("logo")}
-          src={`${process.env.PUBLIC_URL}/img/logo.svg`}
-          alt="logo"
-        />
+        <img className={cx("logo")} src="/img/logo.svg" alt="logo" />
       </a>
     </header>
   );

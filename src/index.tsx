@@ -3,22 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.scss";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
-import { applyMiddleware, createStore } from "redux";
-import { composeWithDevToolsDevelopmentOnly } from "@redux-devtools/extension";
-import { Provider } from "react-redux";
-import createSagaMiddleware from "redux-saga";
 import ReactGA from "react-ga4";
-import rootSaga from "./store/saga";
-import rootReducer from "./store/redux";
 import theme from "./lib/theme/muiTheme";
 import App from "./App";
-
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-  rootReducer,
-  composeWithDevToolsDevelopmentOnly(applyMiddleware(sagaMiddleware))
-);
-sagaMiddleware.run(rootSaga);
 
 if (process.env.NODE_ENV === "production") {
   // // debug
@@ -33,15 +20,13 @@ if (process.env.NODE_ENV === "production") {
 
 const rootContainer = document.getElementById("root");
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <StyledEngineProvider injectFirst>
-          <App/>
-        </StyledEngineProvider>
-      </ThemeProvider>
-    </BrowserRouter>
-  </Provider>
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <App />
+      </StyledEngineProvider>
+    </ThemeProvider>
+  </BrowserRouter>
 );
 const root = createRoot(rootContainer!);
 root.render(app);
