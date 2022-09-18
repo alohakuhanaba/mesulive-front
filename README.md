@@ -1,46 +1,14 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/63982863/190883371-5fb36924-a126-4f8c-ba04-19b2db59d9b8.png" width="100"/>
+  <h3>mesu.live</h3>
+  <p>메이플스토리의 장비 강화 비용 기댓값 및 시뮬레이션 웹서비스입니다.</p>
+  <img src="https://img.shields.io/badge/React-61DAFB.svg?&style=for-the-badge&logo=React&logoColor=333"/>
+  <img src="https://img.shields.io/badge/Typescript-3178C6.svg?&style=for-the-badge&logo=Typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Vite-646CFF.svg?&style=for-the-badge&logo=Vite&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Mui-007FFF.svg?&style=for-the-badge&logo=Mui&logoColor=white"/>
+  <!-- Recoil 넣으면 추가할것
+  <img hidden src="https://img.shields.io/badge/Recoil-007af4.svg?&style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FscXVlXzEiIGRhdGEtbmFtZT0iQ2FscXVlIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDI1NS4yMSA2MjMuOTEiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojZmZmZmZmfTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTc0LjYyIDI3Ny40NiAxLjI0LS4xMyAzNC43OC0zLjI4LTUzLjQ3LTU4LjY2QTk2LjQ3IDk2LjQ3IDAgMCAxIDMyIDE1MC4zSDNhMTI1LjMgMTI1LjMgMCAwIDAgMzIuOCA4NC41N1pNMTc3LjEzIDM0N2wtMzYgMy40IDUzLjMyIDU4LjUxQTk2LjQxIDk2LjQxIDAgMCAxIDIxOS42MyA0NzRoMjguOTJhMTI1LjI4IDEyNS4yOCAwIDAgMC0zMi43Ni04NC41N1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNTMuNjkgMjMxLjY4Yy02LjMzLTMxLjMtMzAuODktNTQuMDktNjIuNTctNTguMDdsLTYuMzUtLjc5YTQ5LjYxIDQ5LjYxIDAgMCAxLTQzLjM1LTQ5LjEzdi0yMGE1Mi43NSA1Mi43NSAwIDEgMC0yOC45MS0uMzZ2MjAuMzhhNzguNTYgNzguNTYgMCAwIDAgNjguNjUgNzcuODJsNi4zNi44YzIzLjI0IDIuOTIgMzQuNzggMjAgMzcuODMgMzUuMXMtLjkzIDM1LjMyLTIxLjIyIDQ3YTczLjgxIDczLjgxIDAgMCAxLTMwLjA2IDkuNjJsLTk1LjY2IDlhMTAyLjQ1IDEwMi40NSAwIDAgMC00MS44IDEzLjM4QzkgMzMyLjQ1LTQuODEgMzYzIDEuNTIgMzk0LjI5czMwLjg5IDU0LjA4IDYyLjU3IDU4LjA2bDYuMzUuOGE0OS42IDQ5LjYgMCAwIDEgNDMuMzUgNDkuMTJ2MThhNTIuNzUgNTIuNzUgMCAxIDAgMjguOTEuMjZ2LTE4LjI2YTc4LjU1IDc4LjU1IDAgMCAwLTY4LjY1LTc3LjgxbC02LjM2LS44Yy0yMy4yNC0yLjkyLTM0Ljc4LTIwLjA1LTM3LjgzLTM1LjExcy45My0zNS4zMiAyMS4yMi00N2E3My42OCA3My42OCAwIDAgMSAzMC4wNi05LjYzbDk1LjY2LTlhMTAyLjQ1IDEwMi40NSAwIDAgMCA0MS44LTEzLjM4YzI3LjY1LTE2LjAyIDQxLjQtNDYuNTQgMzUuMDktNzcuODZaIi8+PC9zdmc+&logoColor=white"/>
+-->
+  <img src="https://img.shields.io/badge/Redux-764ABC.svg?&style=for-the-badge&logo=Redux&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Amplify-FF9900.svg?&style=for-the-badge&logo=AWS-Amplify&logoColor=white"/>
+</div>
