@@ -1,3 +1,5 @@
+const {mergeConfig} = require('vite');
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -14,5 +16,11 @@ module.exports = {
   },
   "features": {
     "storyStoreV7": true
-  }
+  },
+  viteFinal(config) {
+    // Merge custom configuration into the default config
+    return mergeConfig(config, {
+      base: '/mesulive-front/'
+    });
+  },
 }
