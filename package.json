@@ -126,5 +126,6 @@
   },
   "resolutions": {
     "eslint-plugin-absolute-imports@0.0.3": "patch:eslint-plugin-absolute-imports@npm:0.0.3#.yarn/patches/eslint-plugin-absolute-imports-npm-0.0.3-5c0c50cdde.patch"
-  }
+  },
+  "homepage": "."
 }
