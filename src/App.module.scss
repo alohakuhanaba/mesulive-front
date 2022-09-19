@@ -60,3 +60,23 @@ footer {
   color: $color_black_5;
   text-align: center;
 }
+
+.notice {
+  margin: 0 auto 8px;
+  font-weight: 600;
+  background-color: $color_primary_light_2;
+  color: white;
+  border-radius: 20px;
+
+  svg {
+    color: white;
+  }
+
+  @include laptop() {
+    width: 100%;
+  }
+
+  @include desktop() {
+    width: ($breakpoint_desktop - $navi_width_desktop - 16px * 2);
+  }
+}
