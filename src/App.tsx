@@ -1,4 +1,4 @@
-import { Alert, Button, Drawer, NoSsr, Stack } from "@mui/material";
+import { Button, Drawer, NoSsr, Stack } from "@mui/material";
 import classNames from "classnames/bind";
 import { charts } from "highcharts";
 import { createBrowserHistory } from "history";
@@ -8,17 +8,17 @@ import styles from "./App.module.scss";
 import Header from "./components/common/Header";
 import Navigation from "./components/common/Navigation";
 import { GA } from "./lib/ga";
+import Starforce from "./pages/simulators/Starforce";
 import useWindowDimensions from "./lib/hooks/useWindowDimensions";
 import variables from "./lib/styles/utils.module.scss";
 import MainPage from "./pages/MainPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import Starforce from "./pages/simulators/Starforce";
 
 const cx = classNames.bind(styles);
 
 const browserHistory = createBrowserHistory();
-browserHistory.listen(({location}) => {
-  GA.trackPageView({path: location.pathname + location.search});
+browserHistory.listen(({ location }) => {
+  GA.trackPageView({ path: location.pathname + location.search });
 });
 
 const App = () => {
@@ -27,8 +27,8 @@ const App = () => {
    * overlayActive : boolean - 네비게이션과 함께 보여지는 불투명 배경 overlay의 애니메이션 활성화 여부
    */
   const [naviActive, setNaviActive] = useState(false);
-  const {width} = useWindowDimensions();
-  const {breakpoint_tablet, breakpoint_desktop} = useMemo(
+  const { width } = useWindowDimensions();
+  const { breakpoint_tablet, breakpoint_desktop } = useMemo(
     () => ({
       breakpoint_tablet: Number(variables.breakpoint_tablet),
       breakpoint_desktop: Number(variables.breakpoint_desktop),
@@ -51,7 +51,7 @@ const App = () => {
 
   return (
     <>
-      <Header toggleNavi={toggleNavi}/>
+      <Header toggleNavi={toggleNavi} />
       <NoSsr>
         <Drawer
           open={breakpoint_desktop <= width ? true : naviActive}
@@ -61,7 +61,7 @@ const App = () => {
           transitionDuration={300}
           className={cx("drawer")}
         >
-          <Navigation active={naviActive} toggleNavi={toggleNavi}/>
+          <Navigation active={naviActive} toggleNavi={toggleNavi} />
         </Drawer>
       </NoSsr>
       <div
@@ -74,33 +74,33 @@ const App = () => {
            * TODO
            *  CubeCalcPage, FlameCalcPage, CubeSimPage 완성
            */}
-          <Alert severity="warning"
-                 className={cx("notice")}>
-            큐브매수통 접속 정상화는 9월 19일에 진행될 예정입니다.
-          </Alert>
+          {/* <Alert severity="warning" */}
+          {/*       className={cx("notice")}> */}
+          {/*  큐브매수통 접속 정상화는 9월 19일에 진행될 예정입니다. */}
+          {/* </Alert> */}
           <Routes>
             <Route path="calc/*">
-              <Route path="flame" element={<NotFoundPage/>}/>
-              <Route path="cube" element={<NotFoundPage/>}/>
+              <Route path="flame" element={<NotFoundPage />} />
+              <Route path="cube" element={<NotFoundPage />} />
               {/* <Route path="flame" element={<FlameCalcPage/>}/> */}
               {/* <Route path="cube" element={<CubeCalcPage/>}/> */}
-              <Route path="*" element={<NotFoundPage/>}/>
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
             <Route path="sim/*">
-              <Route path="starforce" element={<Starforce/>}/>
-              <Route path="cube" element={<NotFoundPage/>}/>
+              <Route path="starforce" element={<Starforce />} />
+              <Route path="cube" element={<NotFoundPage />} />
               {/* <Route path="cube" element={<CubeSimPage/>}/> */}
-              <Route path="*" element={<NotFoundPage/>}/>
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
-            <Route path="/" element={<MainPage/>}/>
-            <Route path="*" element={<NotFoundPage/>}/>
+            <Route path="/" element={<MainPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <footer>
           <Stack alignItems="center">
             <a
               href="https://toss.me/vetan2"
-              style={{marginBottom: "12px"}}
+              style={{ marginBottom: "12px" }}
               target="_blank"
               rel="noreferrer"
             >
@@ -112,7 +112,7 @@ const App = () => {
                   fontFamily: "Jua",
                   fontSize: "18px",
                   padding: "12px 16px 8px",
-                  "& .MuiTouchRipple-root": {color: "white"},
+                  "& .MuiTouchRipple-root": { color: "white" },
                 }}
                 variant="contained"
               >
@@ -120,9 +120,9 @@ const App = () => {
               </Button>
             </a>
             Copyright 2022. mesulive All rights reserved.
-            <br/>
+            <br />
             mesulive is not associated with NEXON Korea.
-            <br/>
+            <br />
             Contact: help@mesu.live
           </Stack>
         </footer>

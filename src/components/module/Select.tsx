@@ -1,11 +1,11 @@
 import React from "react";
 import {
-  Select as MuiSelect,
-  InputLabel,
   FormControl,
-  MenuItem,
-  SelectChangeEvent,
   FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select as MuiSelect,
+  SelectChangeEvent,
 } from "@mui/material";
 import "./Input.scss";
 import classNames from "classnames";
@@ -57,7 +57,7 @@ const Select = ({
         inputProps={{ readOnly }}
       >
         {itemList.map(({ value, name }) => (
-          <MenuItem value={value} key={`id/value`}>
+          <MenuItem value={value} key={`id/${value}`}>
             {name}
           </MenuItem>
         ))}

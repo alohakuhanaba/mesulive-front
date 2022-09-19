@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from "./NotFoundPage.module.scss";
+import React from "react";
 import classNames from "classnames/bind";
+import styles from "./NotFoundPage.module.scss";
 
 const cx = classNames.bind(styles);
 
